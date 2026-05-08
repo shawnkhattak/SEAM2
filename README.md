@@ -40,6 +40,7 @@ This should start:
 
 - `frontend`: Vite React app
 - `backend`: FastAPI app
+  - Health endpoint: `http://localhost:8000/api/health`
 - `db`: PostgreSQL/PostGIS
 
 And:
@@ -97,7 +98,7 @@ This repository currently contains the planning and implementation-tracking docu
 
 ## Current Repository Status
 
-This repository is at the documentation/planning baseline. The implementation has not been scaffolded yet. The immediate next engineering milestone is the clean project shell: Docker Compose, FastAPI health endpoint, Vite frontend shell, PostgreSQL/PostGIS service, and one-command start/stop scripts.
+This repository includes the initial FastAPI backend scaffold with a health endpoint. The immediate next engineering milestone is the clean project shell: Docker Compose, FastAPI health endpoint, Vite frontend shell, PostgreSQL/PostGIS service, and one-command start/stop scripts.
 
 ## Version 1 Definition of Done
 

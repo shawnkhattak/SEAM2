@@ -29,3 +29,20 @@ Stop the local stack:
 - Backend API docs: `http://localhost:8000/docs`
 - Backend health: `http://localhost:8000/api/health`
 - Frontend: `http://localhost:5173`
+
+## Backend Health Check
+
+After the backend is running, verify it with:
+
+```bash
+curl http://localhost:8000/api/health
+```
+
+Expected response:
+
+```json
+{
+  "status": "ok",
+  "service": "SEAM backend"
+}
+```
