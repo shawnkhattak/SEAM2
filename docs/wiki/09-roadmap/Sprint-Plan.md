@@ -1,21 +1,23 @@
 # Sprint Plan
 
-## Best First Sprint
+## Sprint 1 — Implemented Scaffold
 
-The first sprint should only include:
+Sprint 1 deliverables are implemented in the repository and should be considered complete after `cp .env.example .env`, `./start.sh`, the documented local URLs, and `./stop.sh` complete successfully in a Docker-enabled environment.
+
+Implemented deliverables:
 
 1. Clean repo setup.
-2. Docker Compose.
-3. FastAPI health endpoint.
-4. PostgreSQL/PostGIS connection.
-5. Alembic migrations.
-6. Core ingestion job tables.
+2. Docker Compose with actual services `frontend`, `backend`, and `db`.
+3. FastAPI health endpoint at `/api/health`.
+4. PostgreSQL/PostGIS connection through the `db` Compose service.
+5. Alembic migrations scaffold with the first operational tables migration.
+6. Core ingestion job table.
 7. Source health table.
-8. Basic dev dashboard shell.
+8. Basic Vite React dev dashboard shell.
 
-Best first technical win:
+Sprint 1 technical win:
 
-> I can start SEAM, see the dev dashboard, connect to the database, and run a tracked ingestion job.
+> I can start SEAM, see the dev dashboard, connect to the database, and run against the Sprint 1 operational tables.
 
 ## Best Second Sprint
 

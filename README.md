@@ -14,7 +14,7 @@ Version 1 prioritizes a reliable, explainable data platform over a polished map-
 6. Generate AI explanations constrained to facts already stored in the database.
 7. Visualize Singapore-centered vessel positions and relationship graphs once the backend foundation is stable.
 
-## Planned Tech Stack
+## Tech Stack
 
 | Layer | Choice | Purpose |
 | --- | --- | --- |
@@ -28,31 +28,42 @@ Version 1 prioritizes a reliable, explainable data platform over a polished map-
 | DevOps | Docker Compose, `start.sh`, `stop.sh` | Local-first one-command development |
 | AI | Provider abstraction for OpenAI, Anthropic, local models | Fact-grounded explanations |
 
-## Planned Local Development
+## Local Development Setup
 
-The intended developer experience is:
+Use these exact commands from the repository root:
 
 ```bash
+cp .env.example .env
 ./start.sh
 ```
 
-This should start:
+After the stack starts, open:
 
-- `frontend`: Vite React app
-- `backend`: FastAPI app
-- `db`: PostgreSQL/PostGIS
+- Backend API docs: `http://localhost:8000/docs`
+- Backend health: `http://localhost:8000/api/health`
+- Frontend dev dashboard: `http://localhost:5173`
 
-And:
+Stop the local stack with:
 
 ```bash
 ./stop.sh
 ```
 
-should stop the local stack.
+The Docker Compose stack starts these service names:
+
+- `frontend`: Vite React app on port `5173`
+- `backend`: FastAPI app on port `8000`
+- `db`: PostgreSQL/PostGIS on port `5432`
 
 ## Environment Variables
 
-The planned `.env.example` should include:
+Copy `.env.example` to `.env` before starting the stack:
+
+```bash
+cp .env.example .env
+```
+
+`.env.example` includes:
 
 ```bash
 # App
@@ -88,16 +99,19 @@ VITE_API_BASE_URL=http://localhost:8000
 
 ## Documentation
 
-This repository currently contains the planning and implementation-tracking documents for SEAM Version 1:
+This repository contains the planning and implementation-tracking documents for SEAM Version 1:
 
 - [Architecture](docs/architecture.md)
 - [Roadmap](docs/roadmap.md)
 - [Gap Analysis](docs/gap-analysis.md)
 - [GitHub Issue Stubs](docs/github-issues.md)
+- [Local Setup](docs/wiki/03-local-development/Local-Setup.md)
+- [Docker Compose Plan](docs/wiki/03-local-development/Docker-Compose-Plan.md)
+- [Sprint Plan](docs/wiki/09-roadmap/Sprint-Plan.md)
 
 ## Current Repository Status
 
-This repository is at the documentation/planning baseline. The implementation has not been scaffolded yet. The immediate next engineering milestone is the clean project shell: Docker Compose, FastAPI health endpoint, Vite frontend shell, PostgreSQL/PostGIS service, and one-command start/stop scripts.
+Sprint 1 scaffolding is implemented in this repository: Docker Compose, `start.sh`, `stop.sh`, the FastAPI health endpoint, PostgreSQL/PostGIS, Alembic migration scaffolding, core ingestion/source-health tables, and the Vite dev dashboard shell are present.
 
 ## Version 1 Definition of Done
 
