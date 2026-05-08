@@ -94,18 +94,6 @@ This repository currently contains the planning and implementation-tracking docu
 - [Roadmap](docs/roadmap.md)
 - [Gap Analysis](docs/gap-analysis.md)
 - [GitHub Issue Stubs](docs/github-issues.md)
-- [GitHub Wiki Source](docs/wiki/Home.md)
-
-
-## GitHub Wiki
-
-The project wiki is maintained from the versioned files in `docs/wiki/`, organized into numbered topic folders for product overview, architecture, local development, data model, ingestion, APIs, frontend, AI/risk, roadmap, and operations. The `.github/workflows/sync-wiki.yml` workflow publishes those files to the GitHub Wiki when wiki documentation changes are pushed to `main`.
-
-To publish manually from a local checkout, use:
-
-```bash
-./scripts/publish_wiki.sh git@github.com:OWNER/REPO.wiki.git
-```
 
 ## Current Repository Status
 
