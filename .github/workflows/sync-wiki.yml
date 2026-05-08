@@ -1,0 +1,53 @@
+name: Sync GitHub Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/wiki/**
+      - .github/workflows/sync-wiki.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Sync docs/wiki to GitHub Wiki
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          set -euo pipefail
+          WIKI_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY}.wiki.git"
+          WORK_DIR="$(mktemp -d)"
+          trap 'rm -rf "$WORK_DIR"' EXIT
+
+          if git clone "$WIKI_URL" "$WORK_DIR/wiki"; then
+            echo "Cloned existing wiki repository."
+          else
+            echo "Wiki repository did not clone. Make sure the GitHub Wiki is enabled for this repository." >&2
+            exit 1
+          fi
+
+          rsync -a --delete --exclude='.git' docs/wiki/ "$WORK_DIR/wiki/"
+          cd "$WORK_DIR/wiki"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet --exit-code && [[ -z "$(git status --short)" ]]; then
+            echo "Wiki is already up to date."
+            exit 0
+          fi
+
+          git add .
+          git commit -m "Update SEAM wiki documentation"
+          git push origin HEAD
