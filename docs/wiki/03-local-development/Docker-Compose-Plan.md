@@ -2,11 +2,15 @@
 
 ## Version 1 Services
 
+The final Docker Compose service names are:
+
 ```text
-frontend: Vite React app
-backend: FastAPI app
-db: PostgreSQL/PostGIS
+frontend: Vite React app exposed at ${FRONTEND_PORT:-5173}:5173
+backend: FastAPI app exposed at ${BACKEND_PORT:-8000}:8000
+db: PostgreSQL/PostGIS exposed at ${POSTGRES_PORT:-5432}:5432
 ```
+
+The stack uses the `seam_network` default bridge network and the `postgres_data` named volume for PostgreSQL/PostGIS data.
 
 ## Later Services
 

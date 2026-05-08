@@ -36,11 +36,13 @@ The intended developer experience is:
 ./start.sh
 ```
 
-This should start:
+This should start the Docker Compose services defined in `docker-compose.yml`:
 
-- `frontend`: Vite React app
-- `backend`: FastAPI app
-- `db`: PostgreSQL/PostGIS
+- `frontend`: Vite React app exposed at `${FRONTEND_PORT:-5173}:5173`
+- `backend`: FastAPI app exposed at `${BACKEND_PORT:-8000}:8000`
+- `db`: PostgreSQL/PostGIS exposed at `${POSTGRES_PORT:-5432}:5432`
+
+The stack also creates the `seam_network` default Docker network and the `postgres_data` named volume for database persistence.
 
 And:
 
