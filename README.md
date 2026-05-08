@@ -30,7 +30,13 @@ Version 1 prioritizes a reliable, explainable data platform over a polished map-
 
 ## Planned Local Development
 
-The intended developer experience is:
+Create a local environment file from the example before starting the stack:
+
+```bash
+cp .env.example .env
+```
+
+Start the local Docker Compose stack:
 
 ```bash
 ./start.sh
@@ -42,13 +48,11 @@ This should start:
 - `backend`: FastAPI app
 - `db`: PostgreSQL/PostGIS
 
-And:
+Stop the local stack when finished:
 
 ```bash
 ./stop.sh
 ```
-
-should stop the local stack.
 
 ## Environment Variables
 
