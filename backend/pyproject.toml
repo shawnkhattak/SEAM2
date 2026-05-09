@@ -12,6 +12,11 @@ dependencies = [
   "alembic==1.14.0",
 ]
 
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.4",
+]
+
 [tool.ruff]
 line-length = 100
 
@@ -19,3 +24,7 @@ line-length = 100
 pythonVersion = "3.12"
 venvPath = "."
 venv = ".venv"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
