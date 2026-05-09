@@ -1,0 +1,21 @@
+[project]
+name = "seam-backend"
+version = "0.1.0"
+description = "FastAPI backend for the SEAM maritime risk intelligence platform."
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi==0.115.6",
+  "uvicorn[standard]==0.34.0",
+  "pydantic-settings==2.7.1",
+  "SQLAlchemy==2.0.36",
+  "psycopg[binary]==3.2.3",
+  "alembic==1.14.0",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pyright]
+pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"
