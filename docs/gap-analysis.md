@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The repository is currently a documentation/planning baseline. No runnable backend, frontend, database configuration, migrations, or ingestion services are present yet. The Version 1 technical plan is strong and implementation-ready, but the codebase needs the full project shell before feature work can begin.
+Sprint 1 is now implemented as a runnable local project shell. The repository includes Docker Compose services for the frontend, backend, and PostgreSQL/PostGIS database; one-command start/stop scripts; a FastAPI health endpoint with a database connectivity check; Alembic and SQLAlchemy scaffolding; and a Vite React dev dashboard that calls the backend health endpoint.
 
 ## Requested Review: Gaps and Risks
 
@@ -15,7 +15,7 @@ The repository is currently a documentation/planning baseline. No runnable backe
 - AI is constrained to database fact packets, which reduces hallucination risk.
 - The manual-first ingestion model avoids premature Celery/Redis complexity.
 
-### Key Gaps to Resolve Before Coding Deep Features
+### Key Gaps to Resolve After Sprint 1
 
 1. **External API contract details:** Oceans-X response shapes should be captured as fixtures as soon as access is available.
 2. **Port event uniqueness:** The plan defines a deterministic key, but the schema should include either a computed/source event key column or a dedicated uniqueness constraint strategy.
@@ -41,50 +41,37 @@ The repository is currently a documentation/planning baseline. No runnable backe
 
 | Area | Planned | Current Status | Gap |
 | --- | --- | --- | --- |
-| README | Project overview and setup | Added planning README | Needs runnable setup once scaffold exists |
-| Backend | FastAPI app | Not implemented | Create `backend/` scaffold |
-| Frontend | Vite React TypeScript app | Not implemented | Create `frontend/` scaffold |
-| Database | PostgreSQL/PostGIS | Not implemented | Add Docker service and migrations |
-| Docker Compose | Local stack | Not implemented | Add `docker-compose.yml` |
-| Start/stop scripts | One-command dev | Not implemented | Add `start.sh` and `stop.sh` |
-| Health endpoint | `/api/health` | Not implemented | Add FastAPI route |
-| Ingestion framework | Jobs/logs/source health | Not implemented | Build Sprint 3 services |
+| README | Project overview and setup | Implemented with local setup commands and URLs | Keep updated as features are added |
+| Backend | FastAPI app | Implemented with settings, app factory module, and `/api/health` route | Add feature APIs in later sprints |
+| Frontend | Vite React TypeScript app | Implemented with a dev dashboard and backend health status card | Expand into the Sprint 6 dashboard later |
+| Database | PostgreSQL/PostGIS | Implemented as the `db` Docker Compose service | Add full domain schema in later sprints |
+| Docker Compose | Local stack | Implemented with `frontend`, `backend`, and `db` services | Requires Docker in the local environment |
+| Start/stop scripts | One-command dev | Implemented with `start.sh` and `stop.sh` | None for Sprint 1 |
+| Health endpoint | `/api/health` | Implemented with a database connectivity check | Add richer readiness checks later if needed |
+| Ingestion framework | Jobs/logs/source health | Sprint 1 operational tables are scaffolded | Build runner/services in Sprint 3 |
 | Oceans-X client | Central client with retries/errors | Not implemented | Build Sprint 4 client |
 | Vessel ingestion | Positions snapshot | Not implemented | Build Sprint 5 service |
-| Dev dashboard | Ingestion controls and logs | Not implemented | Build Sprint 6 UI |
+| Dev dashboard | Ingestion controls and logs | Sprint 1 shell and health card implemented | Build Sprint 6 controls/tables |
 | Search/detail | Vessel workflows | Not implemented | Build Sprint 7 APIs/UI |
 | Graph, sanctions, news, AI, map polish | Later Version 1 features | Not implemented | Build after backend foundation |
 
 ## Missing Work by Priority
 
-### Priority 0: Repository Foundation
+### Completed Sprint 1 Foundation
 
-- Add `.gitignore`.
-- Add `.env.example`.
-- Add Docker Compose.
-- Add `start.sh` and `stop.sh`.
+- Added `.gitignore`.
+- Added `.env.example`.
+- Added Docker Compose.
+- Added `start.sh` and `stop.sh`.
+- Added FastAPI project, settings, and health endpoint.
+- Added database session scaffolding and connectivity check.
+- Added Vite React TypeScript project, API client, application shell, and frontend health check call.
 
-### Priority 1: Backend Shell
+### Priority 3: Database Expansion
 
-- Add FastAPI project.
-- Add health endpoint.
-- Add settings module.
-- Add structured logging.
-- Add database session module.
-
-### Priority 2: Frontend Shell
-
-- Add Vite React TypeScript project.
-- Add API client.
-- Add application shell.
-- Add health check call to backend.
-
-### Priority 3: Database and Migrations
-
-- Add SQLAlchemy models.
-- Add Alembic.
-- Add initial migration.
-- Enable PostGIS.
+- Expand SQLAlchemy models beyond Sprint 1 operational tables.
+- Add migrations for vessels, positions, port events, entities, relationships, sanctions, news, risk flags, logs, and reference data.
+- Keep PostGIS enabled for geospatial vessel position work.
 
 ### Priority 4: Ingestion Infrastructure
 
@@ -100,4 +87,4 @@ The repository is currently a documentation/planning baseline. No runnable backe
 
 ## Recommended Immediate Next Step
 
-Implement Sprint 1 only. Do not start graph, sanctions, AI, or map polish until the app can boot locally and the backend health endpoint is reachable from the frontend.
+Move to the next backend foundation sprint: expand the schema and migration flow while preserving the Sprint 1 guarantee that the app boots locally and the frontend can reach the backend health endpoint. Do not start graph, sanctions, AI, or map polish until the ingestion and storage foundation is stable.
